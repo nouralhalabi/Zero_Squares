@@ -21,7 +21,7 @@ class Player:
                 if event.type == pygame.KEYDOWN:
                     # إنشاء كائن من الكلاس State
                     obj =initial_board
-                   # all_states = initial_board.next_state()
+                   # all_states = obj.next_state()
                    # for i, state in enumerate(all_states):
                      #   print(f"State {i+1} (after movement in direction {['right', 'left', 'up', 'down'][i]}):")
                       #  state.print_board()

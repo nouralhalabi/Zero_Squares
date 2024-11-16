@@ -1,53 +1,59 @@
-import pygame
-import sys
-from logic import State
 import copy
-
+import sys
+import keyboard
+from logic import State
+from algorithm import algorithm
 class Player:
-    def __init__(self, board, movable_positions):
+    def __init__(self, board):
         self.board = board
         self.movable_positions = [index for index, square in enumerate(board) if square.num not in (0, 1) and square.is_movable]
 
     def game(self):
-        # طباعة اللوحة أولاً
-        initial_board=State(self.board)
-        
+      
+        initial_board = State(self.board)
+        initial_board.print_board()
+        obj = copy.deepcopy(initial_board)
+        all_states=obj.next_state()
+      #  a=algorithm(obj)
+        #if a.bfs_to_goal(obj):
+        #    print("Game finished successfully!")
+       # else:
+        #    print("Game over! Could not find a solution.")
+
+       # if a.dfs_to_goal(obj):
+        #    print("Game finished successfully!")
+       # else:
+        #    print("Game over! Could not find a solution.")
         while True:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
+           
+            key = keyboard.read_key()
 
-                if event.type == pygame.KEYDOWN:
-                    # إنشاء كائن من الكلاس State
-                    obj =initial_board
-                   # all_states = initial_board.next_state()
-                   # for i, state in enumerate(all_states):
-                     #   print(f"State {i+1} (after movement in direction {['right', 'left', 'up', 'down'][i]}):")
-                      #  state.print_board()
-                       # print("-" * 30) 
-                    # تنفيذ الحركة بناءً على المدخل
-                    if event.key == pygame.K_RIGHT:
-                        new_state = obj.move('right')
-                    elif event.key == pygame.K_LEFT:
-                        new_state = obj.move('left')
-                    elif event.key == pygame.K_UP:
-                        new_state = obj.move('up')
-                    elif event.key == pygame.K_DOWN:
-                        new_state = obj.move('down')
-                    else:
-                        continue  # تجاوز أي مفتاح آخر
-                       
-                    # تحقق من شرط الفوز
-                    if new_state.check_win_condition():
-                        print("You win!")
-                        new_state.print_board()
-                       
+          
+            if key == 'right':
+                new_state = obj.move('right')
+            elif key == 'left':
+                new_state = obj.move('left')
+            elif key == 'up':
+                new_state = obj.move('up')
+            elif key == 'down':
+                new_state = obj.move('down')
+            elif key == 'esc':
+                sys.exit()  # إنهاء البرنامج عند ضغط "Esc"
+            else:
+                continue  # إذا تم ضغط مفتاح آخر، تجاهل
+            
+            if new_state:
+               
+             if new_state.check_win_condition():
+                        print("Congratulations! You've won!")
+                        new_state.print_board()  # عرض الرقعة الفائزة
+                        print("Press ESC to exit.")
                         return True
-                    else:
-                        print("Keep playing!")
-                        new_state.print_board()
-                         # تحديث اللوحة
-            return False  # يتم الإرجاع False إذا لم يتحقق شرط الفوز
-
-     
+                         # الانتظار حتى يضغط المستخدم على ESC للخروج
+                          # إنهاء اللعبة عند الفوز
+             else:
+                  all_states=new_state.next_state()
+                
+            
+                # طباعة اللوحة الجديدة بعد الحركة
+               

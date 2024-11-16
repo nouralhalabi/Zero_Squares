@@ -1,37 +1,56 @@
-class square:
-    def __init__(self, n, is_movable):
+import copy
+
+
+class square:  
+  def __init__(self, n, is_movable):
         self.num = n
         self.is_movable = is_movable
 
 class State:
-    def __init__(self, m):
+    def __init__(self, m, parent=None):
         self.m = m
-        self.movable_positions = [index for index, square in enumerate(m) if square.num not in (0, 1) and square.is_movable]
-
+        self.parent = parent  # الحالة السابقة
+        self.movable_positions = [
+            index for index, square in enumerate(m)
+            if square.num not in (0, 1) and square.is_movable
+        ]
     def move(self, direction):
-        v = 1  # متغير للتحقق من الحركة
-        while v >= 0 and self.movable_positions:
-            v = 0  # إعادة تعيين المتغير في بداية كل جولة
-            for pos in self.movable_positions:
-                moved = False
-                if direction == 'right':
-                    moved = self.move_right(pos)
-                elif direction == 'left':
-                    moved = self.move_left(pos)
-                elif direction == 'down':
-                    moved = self.move_down(pos)
-                elif direction == 'up':
-                    moved = self.move_up(pos)
-                
-                if moved:
-                    v += 1
-                else:
-                    v -= 1
+     v = 1  # بداية الحركات
+     original_board = [square.num for square in self.m]  # حفظ حالة الرقعة الأصلية
 
-            # تحديث قائمة المربعات القابلة للحركة بعد كل جولة
-            self.movable_positions = [index for index, square in enumerate(self.m) if square.num not in (0, 1) and square.is_movable]
+     while v > 0 and self.movable_positions:
+        v = 0  # إعادة تعيين عدد الحركات
+        for pos in self.movable_positions:
+            moved = False  # تتبع إذا تحرك المربع أم لا
 
-        return State(self.m)
+            # تحديد الحركة بناءً على الاتجاه
+            if direction == 'right':
+                moved = self.move_right(pos)
+            elif direction == 'left':
+                moved = self.move_left(pos)
+            elif direction == 'down':
+                moved = self.move_down(pos)
+            elif direction == 'up':
+                moved = self.move_up(pos)
+
+            if moved:
+                v += 1  # زيادة عدد الحركات إذا تحرك مربع
+
+        # تحديث المربعات القابلة للحركة
+        self.movable_positions = [
+            index for index, square in enumerate(self.m)
+            if square.num not in (0, 1) and square.is_movable
+        ]
+
+    # التحقق النهائي بعد انتهاء جميع الحركات
+     if [square.num for square in self.m] != original_board:
+        self.print_board()  # طباعة الرقعة بعد التغيير
+        return State(self.m,original_board)
+     else:
+        print("No movement possible in direction:", direction)
+        return None
+  
+  
 
     def move_right(self, pos):
         target = pos + 1
@@ -88,76 +107,38 @@ class State:
         return target >= 0 and (self.m[target].num == 0 or self.m[target].num == self.m[pos].num)
 
     def check_move_down(self, pos, target):
-        return target < len(self.m) and (self.m[target].num == 0 or self.m[target].num == self.m[pos].num)
+     return target < len(self.m) and pos % 6 == target % 6 and (
+        self.m[target].num == 0 or self.m[target].num == self.m[pos].num)
 
     def check_move_up(self, pos, target):
-        return target >= 0 and (self.m[target].num == 0 or self.m[target].num == self.m[pos].num)
+     return target >= 0 and pos % 6 == target % 6 and (
+        self.m[target].num == 0 or self.m[target].num == self.m[pos].num)
 
     def print_board(self):
-        for i in range(0, len(self.m), 6): 
-            print(" ".join(str(square.num) for square in self.m[i:i+6]))
-        print()
+     for i in range(0, len(self.m), 6):
+        print(" ".join(f"{square.num}" for square in self.m[i:i + 6]))
+     print()
+
     def check_win_condition(self):
         # التحقق من أن الرقعة تحتوي فقط على الأرقام 0 و 1
         return all(square.num in (0, 1) for square in self.m)
     
     def next_state(self):
-          v = 1  # متغير للتحقق من الحركة
-          while v >= 0 and self.movable_positions:
-            v = 0  # إعادة تعيين المتغير في بداية كل جولة
-            for pos in self.movable_positions:
-                moved = False
-                moved = self.move_right(pos)
-              
-                
-                if moved:
-                    v += 1
-                else:
-                    v -= 1
-            self.movable_positions = [index for index, square in enumerate(self.m) if square.num not in (0, 1) and square.is_movable]
-
-          obj1= State(self.m)
-          n = 1  # متغير للتحقق من الحركة
-          while n >= 0 and self.movable_positions:
-            n = 0  # إعادة تعيين المتغير في بداية كل جولة
-            for pos in self.movable_positions:
-                moved = False
-                moved = self.move_left(pos)
-              
-                
-                if moved:
-                    n += 1
-                else:
-                    n -= 1
-            self.movable_positions = [index for index, square in enumerate(self.m) if square.num not in (0, 1) and square.is_movable]
-            obj2= State(self.m)
-            z = 1  # متغير للتحقق من الحركة
-          while z >= 0 and self.movable_positions:
-            z = 0  # إعادة تعيين المتغير في بداية كل جولة
-            for pos in self.movable_positions:
-                moved = False
-                moved = self.move_up(pos)
-              
-                
-                if moved:
-                    z += 1
-                else:
-                    z -= 1
-            self.movable_positions = [index for index, square in enumerate(self.m) if square.num not in (0, 1) and square.is_movable]
-            obj3= State(self.m)
-            c = 1  # متغير للتحقق من الحركة
-          while c >= 0 and self.movable_positions:
-            c = 0  # إعادة تعيين المتغير في بداية كل جولة
-            for pos in self.movable_positions:
-                moved = False
-                moved = self.move_down(pos)
-              
-                
-                if moved:
-                    c += 1
-                else:
-                    c -= 1
-            self.movable_positions = [index for index, square in enumerate(self.m) if square.num not in (0, 1) and square.is_movable]
-
-          obj4= State(self.m)
-          return (obj1,obj2,obj3,obj4)
+    # إنشاء نسخة جديدة من الكائن الحالي
+     temp_state = copy.deepcopy(self)
+    
+    # قم بإنشاء الحالات الممكنة باستخدام temp_state
+     possible_states = []
+     for direction in ['up', 'down', 'left', 'right']:
+        new_state = temp_state.move(direction)
+        if new_state:
+            possible_states.append(new_state)
+            temp_state = copy.deepcopy(self)
+     return possible_states
+    def get_path(self):
+        path = []
+        current = self
+        while current is not None:
+            path.append(current)
+            current = current.parent
+        return path[::-1] 

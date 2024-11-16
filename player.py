@@ -48,6 +48,8 @@ class Player:
                         print("Congratulations! You've won!")
                         new_state.print_board()  # عرض الرقعة الفائزة
                         print("Press ESC to exit.")
+                  
+                       
                         return True
                          # الانتظار حتى يضغط المستخدم على ESC للخروج
                           # إنهاء اللعبة عند الفوز

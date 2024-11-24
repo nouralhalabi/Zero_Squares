@@ -13,17 +13,21 @@ class Player:
         initial_board = State(self.board)
         initial_board.print_board()
         obj = copy.deepcopy(initial_board)
-        all_states=obj.next_state()
-      #  a=algorithm(obj)
-        #if a.bfs_to_goal(obj):
-        #    print("Game finished successfully!")
+       # all_states=obj.next_state()
+        a=algorithm(obj)
+       # if a.bfs_to_goal(obj):
+       #   print("Game finished successfully!")
        # else:
-        #    print("Game over! Could not find a solution.")
+       #    print("Game over! Could not find a solution.")
 
        # if a.dfs_to_goal(obj):
-        #    print("Game finished successfully!")
+        #   print("Game finished successfully!")
        # else:
-        #    print("Game over! Could not find a solution.")
+        #   print("Game over! Could not find a solution.")
+        if a.dfs_recursion(obj):
+              print("Game finished successfully!")
+        else:
+          print("Game over! Could not find a solution.")
         while True:
            
             key = keyboard.read_key()
@@ -46,16 +50,14 @@ class Player:
                
              if new_state.check_win_condition():
                         print("Congratulations! You've won!")
-                        new_state.print_board()  # عرض الرقعة الفائزة
+                        new_state.print_board()  
                         print("Press ESC to exit.")
                   
                        
                         return True
-                         # الانتظار حتى يضغط المستخدم على ESC للخروج
-                          # إنهاء اللعبة عند الفوز
+                        
              else:
                   all_states=new_state.next_state()
                 
             
-                # طباعة اللوحة الجديدة بعد الحركة
                

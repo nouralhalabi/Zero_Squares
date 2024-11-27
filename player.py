@@ -15,19 +15,20 @@ class Player:
         obj = copy.deepcopy(initial_board)
        # all_states=obj.next_state()
         a=algorithm(obj)
-       # if a.bfs_to_goal(obj):
-       #   print("Game finished successfully!")
-       # else:
-       #    print("Game over! Could not find a solution.")
-
-       # if a.dfs_to_goal(obj):
-        #   print("Game finished successfully!")
-       # else:
-        #   print("Game over! Could not find a solution.")
-        if a.dfs_recursion(obj):
-              print("Game finished successfully!")
+       # a.ucs_to_goal()
+        if a.bfs_to_goal(obj):
+          print("Game finished successfully!")
         else:
           print("Game over! Could not find a solution.")
+
+       # if a.dfs_to_goal(obj):
+       #    print("Game finished successfully!")
+       # else:
+       #    print("Game over! Could not find a solution.")
+       # if a.dfs_to_goal_recursive(obj):
+        #      print("Game finished successfully!")
+       # else:
+       #   print("Game over! Could not find a solution.")
         while True:
            
             key = keyboard.read_key()

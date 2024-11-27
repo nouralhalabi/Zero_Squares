@@ -5,42 +5,41 @@ from logic import State, square
 from player import Player
 
 
-# إعداد المصفوفات (الرقع)
 array1 = [
-    square(1, False), square(1, False), square(1, False),
-    square(1, False), square(1, False), square(1, False),
-    square(1, False), square(2, True), square(0, False),
-    square(0, False), square(2, False), square(1, False),
-    square(1, False), square(1, False), square(1, False),
-    square(1, False), square(1, False), square(1, False)
+    square(1, False,0), square(1, False,0), square(1, False,0),
+    square(1, False,0), square(1, False,0), square(1, False,0),
+    square(1, False,0), square(2, True,1), square(0, False,0),
+    square(0, False,0), square(2, False,0), square(1, False,0),
+    square(1, False,0), square(1, False,0), square(1, False,0),
+    square(1, False,0), square(1, False,0), square(1, False,0)
 ]
 array2 = [
-    square(1, False), square(1, False), square(1, False),
-    square(1, False), square(1, False), square(1, False),
-    square(1, False), square(3, True), square(1, False),
-    square(0, False), square(1, False), square(1, False),
-    square(1, False), square(0, False), square(0, False),
-    square(3, False), square(0, False), square(1, False),
-    square(1, False), square(0, False), square(0, False),
-    square(0, False), square(4, True), square(1, False),
-    square(1, False), square(0, False), square(0, False),
-    square(4, False), square(1, False), square(1, False),
-    square(1, False), square(1, False), square(1, False),
-    square(1, False), square(1, False), square(1, False),
+    square(1, False,0), square(1, False,0), square(1, False,0),
+    square(1, False,0), square(1, False,0), square(1, False,0),
+    square(1, False,0), square(3, True,1), square(1, False,0),
+    square(0, False,0), square(1, False,0), square(1, False,0),
+    square(1, False,0), square(0, False,0), square(0, False,0),
+    square(3, False,0), square(0, False,0), square(1, False,0),
+    square(1, False,0), square(0, False,0), square(0, False,0),
+    square(0, False,0), square(4, True,1), square(1, False,0),
+    square(1, False,0), square(0, False,0), square(0, False,0),
+    square(4, False,0), square(1, False,0), square(1, False,0),
+    square(1, False,0), square(1, False,0), square(1, False,0),
+    square(1, False,0), square(1, False,0), square(1, False,0),
 ]
 array3 = [
-    square(1, False), square(1, False), square(1, False),
-    square(1, False), square(1, False), square(1, False),
-    square(1, False), square(0, False), square(7, True),
-    square(5, True), square(6, True), square(1, False),
-    square(1, False), square(0, False), square(0, False),
-    square(0, False), square(0, False), square(1, False),
-    square(1, False), square(0, False), square(0, False),
-    square(0, False), square(1, False), square(1, False),
-    square(1, False), square(7, False), square(0, False),
-    square(5, False), square(6, False), square(1, False),
-    square(1, False), square(1, False), square(1, False),
-    square(1, False), square(1, False), square(1, False),
+    square(1, False,0), square(1, False,0), square(1, False,0),
+    square(1, False,0), square(1, False,0), square(1, False,0),
+    square(1, False,0), square(0, False,0), square(7, True,1),
+    square(5, True,1), square(6, True,1), square(1, False,0),
+    square(1, False,0), square(0, False,0), square(0, False,0),
+    square(0, False,0), square(0, False,0), square(1, False,0),
+    square(1, False,0), square(0, False,0), square(0, False,0),
+    square(0, False,0), square(1, False,0), square(1, False,0),
+    square(1, False,0), square(7, False,0), square(0, False,0),
+    square(5, False,0), square(6, False,0), square(1, False,0),
+    square(1, False,0), square(1, False,0), square(1, False,0),
+    square(1, False,0), square(1, False,0), square(1, False,0),
 ]
 
 def initialize_player(current_board):
@@ -56,9 +55,9 @@ player_instance = initialize_player(current_board)
 while player_instance and player_instance.game():
        
         
-        # الانتقال للرقعة التالية إذا انتهت الحركات
+       
         current_board_index += 1
-        if current_board_index >= len(boards):  # إذا انتهت جميع الرقعات
+        if current_board_index >= len(boards): 
             print("لقد انتهيت من جميع الرقعات!")
            
             break

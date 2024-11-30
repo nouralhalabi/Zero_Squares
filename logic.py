@@ -9,7 +9,7 @@ class square:
 class State:
     def __init__(self, m, parent=None,cost=0):
         self.m = m
-        self.parent = parent  # الحالة السابقة
+        self.parent = parent  
         self.movable_positions = {
             index: square.num
             for index, square in enumerate(m)
@@ -17,7 +17,7 @@ class State:
         }
         self.cost=cost
     def move(self, direction):      
-     v = 1  # بداية الحركات
+     v = 1 
      original_board = [square.num for square in self.m] 
 
      while v > 0 and self.movable_positions:

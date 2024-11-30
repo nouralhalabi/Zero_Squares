@@ -16,6 +16,38 @@ array1 = [
 array2 = [
     square(1, False,0), square(1, False,0), square(1, False,0),
     square(1, False,0), square(1, False,0), square(1, False,0),
+    square(1, False,0), square(0, False,0), square(0, False,0),
+    square(0, False,0), square(0, False,0), square(1, False,0),
+    square(1, False,0), square(0, False,0), square(3, False,0)
+   , square(0, False,0), square(1, False,0),
+    square(1, False,0), square(1, False,0), square(1, False,0),
+    square(1, False,0), square(0, False,0), square(3, True,1),
+    square(1, False,0), square(1, False,0), square(0, False,0),
+    square(0, False,0), square(0, False,0), square(1, False,0),
+    square(1, False,0), square(1, False,0), square(1, False,0),
+    square(1, False,0), square(1, False,0), square(1, False,0),
+    square(1, False,0),
+]
+array3 = [
+    square(1, False,0), square(1, False,0), square(1, False,0),
+    square(1, False,0), square(1, False,0), square(1, False,0),
+    square(1, False,0), square(2, False,0), square(0, False,0),
+    square(0, False,0), square(0, False,0), square(1, False,0),
+    square(1, False,0), square(0, False,0), square(0, False,0)
+   , square(0, False,0), square(3, False,0),
+    square(1, False,0), square(1, False,0), square(0, False,0),
+    square(0, False,0), square(0, False,0), square(2, True,1),
+    square(1, False,0), square(1, False,0), square(3, True,1),
+    square(0, False,0), square(0, False,0), square(0, False,0),
+    square(1, False,0), square(1, False,0), square(1, False,0),
+    square(1, False,0), square(1, False,0), square(1, False,0),
+    square(1, False,0),
+   
+
+]
+array4 = [
+    square(1, False,0), square(1, False,0), square(1, False,0),
+    square(1, False,0), square(1, False,0), square(1, False,0),
     square(1, False,0), square(3, True,1), square(1, False,0),
     square(0, False,0), square(1, False,0), square(1, False,0),
     square(1, False,0), square(0, False,0), square(0, False,0),
@@ -27,7 +59,7 @@ array2 = [
     square(1, False,0), square(1, False,0), square(1, False,0),
     square(1, False,0), square(1, False,0), square(1, False,0),
 ]
-array3 = [
+array5 = [
     square(1, False,0), square(1, False,0), square(1, False,0),
     square(1, False,0), square(1, False,0), square(1, False,0),
     square(1, False,0), square(0, False,0), square(7, True,1),
@@ -44,7 +76,7 @@ array3 = [
 
 def initialize_player(current_board):
     return Player(current_board)
-boards = [array1, array2, array3]
+boards = [array1,array2,array3,array4,array5]
 current_board_index = 0
 
 current_board =boards[current_board_index]

@@ -8,7 +8,7 @@ from player import Player
 array1 = [
     square(1, False,0), square(1, False,0), square(1, False,0),
     square(1, False,0), square(1, False,0), square(1, False,0),
-    square(1, False,0), square(2, True,1), square(0, False,0),
+    square(1, False,0), square(2, True,0), square(0, False,0),
     square(0, False,0), square(2, False,0), square(1, False,0),
     square(1, False,0), square(1, False,0), square(1, False,0),
     square(1, False,0), square(1, False,0), square(1, False,0)
@@ -21,7 +21,7 @@ array2 = [
     square(1, False,0), square(0, False,0), square(3, False,0)
    , square(0, False,0), square(1, False,0),
     square(1, False,0), square(1, False,0), square(1, False,0),
-    square(1, False,0), square(0, False,0), square(3, True,1),
+    square(1, False,0), square(0, False,0), square(3, True,0),
     square(1, False,0), square(1, False,0), square(0, False,0),
     square(0, False,0), square(0, False,0), square(1, False,0),
     square(1, False,0), square(1, False,0), square(1, False,0),
@@ -36,8 +36,8 @@ array3 = [
     square(1, False,0), square(0, False,0), square(0, False,0)
    , square(0, False,0), square(3, False,0),
     square(1, False,0), square(1, False,0), square(0, False,0),
-    square(0, False,0), square(0, False,0), square(2, True,1),
-    square(1, False,0), square(1, False,0), square(3, True,1),
+    square(0, False,0), square(0, False,0), square(2, True,0),
+    square(1, False,0), square(1, False,0), square(3, True,0),
     square(0, False,0), square(0, False,0), square(0, False,0),
     square(1, False,0), square(1, False,0), square(1, False,0),
     square(1, False,0), square(1, False,0), square(1, False,0),

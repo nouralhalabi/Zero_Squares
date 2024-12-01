@@ -16,7 +16,7 @@ class Player:
        # all_states=obj.next_state()
         a=algorithm(obj)
        
-       # a.ucs_to_goal()
+        a.ucs_to_goal()
        # if a.bfs_to_goal(obj):
        #   print("Game finished successfully!")
        # else:

@@ -149,3 +149,54 @@ class algorithm:
 
         print("No solution found.")
         return None
+    #A*******
+    def a_star_to_goal(self, initial_state):
+
+     open_list = []
+     closed_set = set()
+
+     heapq.heappush(open_list, (self.heuristic(initial_state), 0, initial_state))
+
+     while open_list:
+        _, g_cost, current_state = heapq.heappop(open_list)
+
+         if current_state.check_win_condition():
+            print("Solution found using A*!")
+            path = current_state.get_path()
+            print("Path to solution:")
+            for step, state in enumerate(path):
+                print(f"Step {step}:")
+                state.print_board()
+                return True
+
+        state_signature = tuple(square.num for square in current_state.m)
+        if state_signature in closed_set:
+            continue  
+
+     
+        closed_set.add(state_signature)
+
+      
+        for next_board in current_state.next_state():
+            next_state = State(next_board.m, current_state)
+            new_g = g_cost + 1 
+            f_cost = new_g + self.heuristic(next_state)
+            heapq.heappush(open_list, (f_cost, new_g, next_state))
+
+     print("No solution found using A*.")
+     return False
+##heuristic quize
+    def heuristic(self, state):
+     def manhattan_distance(pos1, pos2):
+        x1, y1 = pos1
+        x2, y2 = pos2
+        return abs(x1 - x2) + abs(y1 - y2)
+
+     total_distance = 0
+     for square, target in zip(state.m, self.board.m): 
+        if square.num not in (0, 1):  
+            square_position = square.position  
+            target_position = target.position  
+            total_distance += manhattan_distance(square_position, target_position)
+
+        return total_distance
